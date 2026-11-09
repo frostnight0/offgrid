@@ -3,6 +3,21 @@
     "name": "Pool or swimming pond",
     "category": "",
     "status": "planned",
-    "next": "Sketch the plan"
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+  {
+    "name": "Chinese koi pond",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+  {
+    "name": "Japaniese koi pond",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
   }
 ]
