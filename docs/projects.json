@@ -35,7 +35,7 @@
     "hidden": false
   },
   {
-    "name": "Hot Tub",
+    "name": "Hot tub",
     "category": "",
     "status": "planned",
     "next": "Sketch the plan",
@@ -43,6 +43,27 @@
   },
   {
     "name": "Sauna",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+   {
+    "name": "Cabin",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+  {
+    "name": "Beehives",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+  {
+    "name": "Greenhouse",
     "category": "",
     "status": "planned",
     "next": "Sketch the plan",
