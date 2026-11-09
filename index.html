@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A public list of my projects, statuses, and next steps.">
+  <meta name="theme-color" content="#f6f7f4">
+  <title>Projects · Workbench</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f7f4;
+      --white: #fff;
+      --ink: #182522;
+      --muted: #54625d;
+      --line: #e0e5e0;
+      --accent: #124f42;
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); }
+    input, select { font: inherit; }
+    select { cursor: pointer; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid #147c64; outline-offset: 3px; }
+    .frame { width: min(1080px, calc(100% - 64px)); margin-inline: auto; }
+    .icon { width: 18px; height: 18px; flex: none; }
+    .masthead { border-bottom: 1px solid var(--line); background: var(--white); }
+    .masthead .frame { display: flex; align-items: center; justify-content: space-between; min-height: 67px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; letter-spacing: -.025em; }
+    .mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: white; }
+    .eyebrow { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 750; color: var(--muted); }
+    main { padding-block: 50px 42px; }
+    .intro { margin-bottom: 27px; }
+    h1 { margin: 2px 0 5px; font-size: clamp(2.5rem, 6vw, 3.75rem); line-height: 1.06; letter-spacing: -.07em; }
+    .intro p { margin: 0; color: var(--muted); }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 25px; }
+    .stat { position: relative; overflow: hidden; min-height: 91px; background: var(--white); padding: 13px 17px; border: 1px solid var(--line); border-radius: 11px; }
+    .stat:first-child { background: #e8f2ec; border-color: #d6e7dd; }
+    .stat dt { color: var(--muted); font-size: .8rem; font-weight: 600; }
+    .stat dd { margin: 1px 0 0; font-size: 1.9rem; font-weight: 720; line-height: 1.15; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+    .stat-symbol { position: absolute; right: 15px; top: 14px; color: #3b6759; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: 13px; box-shadow: 0 3px 8px #192b2205; }
+    .panel-head { padding: 14px 17px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.03em; }
+    .filters { display: flex; gap: 8px; }
+    .search { position: relative; }
+    .search .icon { position: absolute; left: 11px; top: 11px; color: var(--muted); pointer-events: none; }
+    input, select { min-width: 0; min-height: 40px; padding: 7px 10px; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 8px; font-size: .875rem; }
+    input::placeholder { color: #68756f; }
+    .search input { width: 208px; padding-left: 35px; }
+    .table-wrap { overflow-x: auto; border-radius: 0 0 12px 12px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; table-layout: fixed; }
+    th { padding: 9px 16px; color: var(--muted); background: #f7f9f7; font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; border-block: 1px solid var(--line); }
+    td { padding: 11px 16px; border-bottom: 1px solid #edf0ed; font-size: .875rem; overflow-wrap: anywhere; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #fafcfb; }
+    .project { width: 30%; }
+    .number-col { width: 56px; }
+    .status-col { width: 132px; }
+    .project-name { display: block; font-weight: 720; }
+    .category { display: block; color: var(--muted); font-size: .75rem; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 999px; font-size: .73rem; font-weight: 650; white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .planned { color: #4e5e70; background: #edf1f7; }
+    .active { color: #805013; background: #fff0d7; }
+    .done { color: #21604c; background: #e6f3ea; }
+    .project-number { color: var(--muted); font-variant-numeric: tabular-nums; }
+    .empty { text-align: center; padding: 35px 16px; color: var(--muted); }
+    .empty strong { display: block; color: var(--ink); margin-bottom: 4px; }
+    .panel-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px 18px; flex-wrap: wrap; font-size: .76rem; color: var(--muted); }
+    .panel-foot { padding: 10px 17px; border-top: 1px solid var(--line); }
+    .recovery { margin: 14px 0 0; color: var(--muted); font-size: .8rem; }
+    .recovery a { color: var(--accent); font-weight: 650; }
+    .alert { margin: 0 0 14px; padding: 10px 14px; border-radius: 8px; color: #823d2c; background: #fcece5; font-size: .87rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    @media (max-width: 740px) {
+      .frame { width: calc(100% - 36px); }
+      main { padding-top: 32px; }
+      table { min-width: 540px; }
+      .stats { gap: 8px; }
+      .stat { padding-inline: 11px; }
+      .stat-symbol { display: none; }
+    }
+    @media (max-width: 510px) {
+      .frame { width: calc(100% - 28px); }
+      .masthead .frame { min-height: 56px; }
+      .intro { margin-bottom: 18px; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 16px; }
+      .stat { min-height: 70px; padding: 9px 11px; }
+      .panel-head { align-items: stretch; flex-direction: column; }
+      .search { flex: 1; min-width: 0; }
+      .search input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2 4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/></symbol>
+  </svg>
+
+  <header class="masthead">
+    <div class="frame">
+      <span class="brand"><span class="mark"><svg class="icon" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#i-grid"/></svg></span> Workbench</span>
+      <span class="eyebrow">Personal projects</span>
+    </div>
+  </header>
+
+  <main class="frame">
+    <div class="intro">
+      <div>
+        <span class="eyebrow">Project tracker</span>
+        <h1>My projects</h1>
+        <p>What I’m working on, what’s next, and what I’ve finished.</p>
+      </div>
+    </div>
+
+    <dl class="stats" aria-label="Project totals">
+      <div class="stat"><dt>All projects</dt><dd id="count-all">0</dd><svg class="icon stat-symbol" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#i-grid"/></svg></div>
+      <div class="stat"><dt>In progress</dt><dd id="count-active">0</dd><svg class="icon stat-symbol" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#i-clock"/></svg></div>
+      <div class="stat"><dt>Planned</dt><dd id="count-planned">0</dd><svg class="icon stat-symbol" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-circle"/></svg></div>
+      <div class="stat"><dt>Done</dt><dd id="count-done">0</dd><svg class="icon stat-symbol" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#i-check"/></svg></div>
+    </dl>
+
+    <p class="alert" id="load-alert" role="alert" hidden></p>
+    <noscript><p class="alert">Enable JavaScript to view the project list.</p></noscript>
+    <section class="panel" aria-labelledby="list-heading">
+      <div class="panel-head">
+        <h2 id="list-heading">Project list</h2>
+        <div class="filters">
+          <label class="search">
+            <span class="sr-only">Search projects</span>
+            <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#i-search"/></svg>
+            <input type="search" id="search" placeholder="Search projects…">
+          </label>
+          <select id="status-filter" aria-label="Filter by status">
+            <option value="">All statuses</option>
+            <option value="active">In progress</option>
+            <option value="planned">Planned</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Project table">
+        <table aria-labelledby="list-heading">
+          <thead><tr><th scope="col" class="number-col" aria-label="Project number">#</th><th scope="col" class="project">Project</th><th scope="col" class="status-col">Status</th><th scope="col">Next step</th></tr></thead>
+          <tbody id="project-rows"><tr><td class="empty" colspan="4">Loading projects…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="panel-foot">
+        <span id="results-count" role="status"></span>
+      </div>
+    </section>
+    <p class="recovery" id="recovery" hidden><a id="legacy-export" download="legacy-projects.json">Download projects saved by the previous version</a></p>
+  </main>
+
+  <template id="row-template">
+    <tr>
+      <td class="project-number"></td>
+      <td><span class="project-name"></span><span class="category"></span></td>
+      <td><span class="badge"></span></td>
+      <td class="next-step"></td>
+    </tr>
+  </template>
+
+  <script>
+    'use strict';
+
+    const statuses = { planned: 'Planned', active: 'In progress', done: 'Done' };
+    const rows = document.querySelector('#project-rows');
+    const template = document.querySelector('#row-template');
+    const search = document.querySelector('#search');
+    const filter = document.querySelector('#status-filter');
+    const resultCount = document.querySelector('#results-count');
+
+    function render(projects) {
+      const query = search.value.trim().toLocaleLowerCase();
+      const visible = projects.filter(project => {
+        const text = [project.name, project.category, project.next].join(' ').toLocaleLowerCase();
+        return (!filter.value || filter.value === project.status) && text.includes(query);
+      });
+
+      document.querySelector('#count-all').textContent = projects.length;
+      for (const status of Object.keys(statuses)) {
+        document.querySelector('#count-' + status).textContent = projects.filter(project => project.status === status).length;
+      }
+
+      const fragment = document.createDocumentFragment();
+      for (const project of visible) {
+        const row = template.content.cloneNode(true);
+        row.querySelector('.project-number').textContent = project.number;
+        row.querySelector('.project-name').textContent = project.name;
+        row.querySelector('.category').textContent = project.category ?? '';
+        const badge = row.querySelector('.badge');
+        badge.textContent = statuses[project.status];
+        badge.classList.add(project.status);
+        row.querySelector('.next-step').textContent = project.next || '—';
+        fragment.append(row);
+      }
+
+      rows.replaceChildren(fragment);
+      if (!visible.length) {
+        const empty = rows.insertRow().insertCell();
+        empty.colSpan = 4;
+        empty.className = 'empty';
+        const heading = document.createElement('strong');
+        heading.textContent = projects.length ? 'No matching projects' : 'No projects yet';
+        empty.append(heading, projects.length ? 'Try another search or status.' : 'New projects will appear here.');
+      }
+
+      resultCount.textContent = visible.length === projects.length
+        ? projects.length + (projects.length === 1 ? ' project' : ' projects')
+        : visible.length + ' of ' + projects.length + ' projects';
+    }
+
+    async function loadProjects() {
+      try {
+        const response = await fetch('./projects.json', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const data = await response.json();
+        if (!Array.isArray(data) || !data.every(project =>
+          typeof project?.name === 'string' && project.name.trim() && Object.hasOwn(statuses, project.status)
+        )) {
+          throw new Error('Expected a list of projects with a name and valid status.');
+        }
+        const projects = data.map((project, index) => ({ ...project, number: index + 1 }));
+        render(projects);
+        search.addEventListener('input', () => render(projects));
+        filter.addEventListener('change', () => render(projects));
+      } catch (error) {
+        console.error('Could not load projects.json', error);
+        rows.replaceChildren();
+        search.disabled = true;
+        filter.disabled = true;
+        const alert = document.querySelector('#load-alert');
+        alert.textContent = 'The project list is unavailable. Please try again later.';
+        alert.hidden = false;
+      }
+    }
+
+    function offerLegacyExport() {
+      try {
+        const oldKey = 'workbench.projects.v1:' + location.pathname.replace(/\/index\.html$/, '/');
+        const saved = JSON.parse(localStorage.getItem(oldKey));
+        if (!Array.isArray(saved)) return;
+        const projects = saved
+          .filter(project => project && !project.example)
+          .map(({ name, category, status, next }) => ({ name, category, status, next }));
+        if (!projects.length) return;
+        const file = new Blob([JSON.stringify(projects, null, 2) + '\n'], { type: 'application/json' });
+        document.querySelector('#legacy-export').href = URL.createObjectURL(file);
+        document.querySelector('#recovery').hidden = false;
+      } catch {
+        // The public list works independently of browser storage.
+      }
+    }
+
+    loadProjects();
+    offerLegacyExport();
+  </script>
+</body>
+</html>
