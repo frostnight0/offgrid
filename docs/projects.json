@@ -33,5 +33,19 @@
     "status": "planned",
     "next": "Sketch the plan",
     "hidden": false
+  },
+  {
+    "name": "Hot Tub",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
+  },
+  {
+    "name": "Sauna",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
   }
 ]
