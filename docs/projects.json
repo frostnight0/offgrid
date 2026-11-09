@@ -68,5 +68,12 @@
     "status": "planned",
     "next": "Sketch the plan",
     "hidden": false
+  },
+  {
+    "name": "Smokehouse",
+    "category": "",
+    "status": "planned",
+    "next": "Sketch the plan",
+    "hidden": false
   }
 ]
